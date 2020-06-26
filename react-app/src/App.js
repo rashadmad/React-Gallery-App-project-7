@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* add the search bar here */}
         <Nav />
       </header>
       <ul>
