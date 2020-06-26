@@ -12,7 +12,7 @@ function App() {
         <Nav />
       </header>
       <ul>
-        <Photo />
+        <Photo imageUrl="https://via.placeholder.com/150"  />
       </ul>
     </div>
   );

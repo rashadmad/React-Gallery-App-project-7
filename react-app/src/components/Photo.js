@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Photo = () => {
+const Photo = (prop) => {
   return (
     <li>
-      <img src="https://via.placeholder.com/150" alt="placeholder" width="500" height="600"></img>
+      <img src={prop.imageUrl} alt="placeholder" width="500" height="600"></img>
     </li>
   );
 }
