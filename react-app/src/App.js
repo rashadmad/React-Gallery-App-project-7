@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 // import components
 import Nav from './components/Nav';
+import Photo from './components/Photo';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Nav />
       </header>
       <ul>
-        {/* add the photo components here */}
+        <Photo />
       </ul>
     </div>
   );
