@@ -1,12 +1,14 @@
 import React from 'react';
 
+
 const Nav = (props) => {
-    <nav>
-        <input type="text" placeholder="Search..">  
-        <a href="#">Cats</a> 
-        <a href="#">Dogs</a> 
-        <a href="#">Birds</a> 
-    </nav>
+    return (
+        <nav>
+            <button>Cats</button> 
+            <button>Dogs</button> 
+            <button>Birds</button> 
+        </nav>
+    )
 }
 
 export default Nav;
