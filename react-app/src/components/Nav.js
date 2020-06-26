@@ -6,17 +6,17 @@ class Nav extends React.Component {
         whichAnimal: null
     }
 
-    pickAnimal(){
-        console.log("animal")
+    pickAnimal(animal){
+        console.log(animal)
     }  
 
     render() { 
         return (
         <nav>
             <input type="text" placeholder="Search.."></input>
-            <button onClick={this.pickAnimal}>Cats</button> 
-            <button onClick={this.pickAnimal}>Dogs</button> 
-            <button onClick={this.pickAnimal}>Birds</button> 
+            <button onClick={() => this.pickAnimal("Cats")}>Cats</button> 
+            <button onClick={() => this.pickAnimal("Dogs")}>Dogs</button> 
+            <button onClick={() => this.pickAnimal("Birds")}>Birds</button> 
         </nav>
         )
     }
