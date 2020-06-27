@@ -8,15 +8,19 @@ import Photo from './components/Photo';
 
 class App extends Component {
 
-  state = {
-    image: "https://via.placeholder.com/150",
-    whichAnimal: "cat"
-  }
+  constructor(){
+    super()
+    this.state = {
+      image: "https://via.placeholder.com/150", 
+      whichAnimal: "cat"
+    }
+    console.log(this.state)
+  }  
 
   pickAnimal = () => {
     console.log('I have been clicked')
     this.setState({
-      whichAnimal: "dog"
+      whichAnimal: 'cat'
     }, () => console.log(this.state.whichAnimal))
   }
 
