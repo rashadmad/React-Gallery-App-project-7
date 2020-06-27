@@ -12,16 +12,17 @@ class App extends Component {
     super()
     this.state = {
       image: "https://via.placeholder.com/150", 
-      whichAnimal: "cat"
+      whichAnimal: "cats"
     }
     console.log(this.state)
   }  
 
   pickAnimal = () => {
-    console.log('I have been clicked')
-    this.setState({
-      whichAnimal: 'dog'
-    }, () => console.log(this.state.whichAnimal))
+    this.setState( prevState => {
+      return {
+        whichAnimal: prevState.whichAnimal = "Dogs"
+      }
+    });  
   }
 
   render() {
