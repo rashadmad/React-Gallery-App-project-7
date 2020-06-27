@@ -20,7 +20,7 @@ class App extends Component {
   pickAnimal = () => {
     console.log('I have been clicked')
     this.setState({
-      whichAnimal: 'cat'
+      whichAnimal: 'dog'
     }, () => console.log(this.state.whichAnimal))
   }
 
