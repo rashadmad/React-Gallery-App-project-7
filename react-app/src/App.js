@@ -5,18 +5,27 @@ import './App.css';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 
-class App extends React.Component {
+
+class App extends Component {
 
   state = {
-    whichAnimal: "cat",
-    image: "https://via.placeholder.com/150"
+    image: "https://via.placeholder.com/150",
+    whichAnimal: "cat"
+  }
+
+  pickAnimal = () => {
+    console.log('I have been clicked')
+    this.setState({
+      whichAnimal: "dog"
+    }, () => console.log(this.state.whichAnimal))
   }
 
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
-          <Nav whichAnimal={this.state.whichAnimal} /> 
+          <Nav clickMe={this.pickAnimal} /> 
         </header>
         <ul>
           <Photo imageUrl={this.state.image} />

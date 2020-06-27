@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Nav extends React.Component {
+class Nav extends Component {
 
-    pickAnimal(animal){
-        console.log(animal)
-      }  
+    clickMe = () => {
+        this.props.clickMe()
+    }
 
     render() { 
         return (
-        <nav>
-            <input type="text" placeholder="Search.."></input>
-            <button onClick={() => this.pickAnimal("Cats")}>Cats</button> 
-            <button onClick={() => this.pickAnimal("Dogs")}>Dogs</button> 
-            <button onClick={() => this.pickAnimal("Birds")}>Birds</button> 
-        </nav>
+            <nav>
+                <input type="text" placeholder="Search.."></input>
+                <button onClick={this.clickMe}>Cats</button> 
+                <button onClick={this.clickMe}>Dogs</button> 
+                <button onClick={this.clickMe}>Birds</button> 
+            </nav>
         )
     }
 }

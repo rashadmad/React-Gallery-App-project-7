@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 class Photo extends Component {
 
-      state = {
-        imageUrl: "https://via.placeholder.com/150"
-      }
-
     render() {
         return (
             <li>
