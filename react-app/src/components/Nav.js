@@ -1,14 +1,10 @@
 import React from 'react';
 
 class Nav extends React.Component {
-    
-    state = {
-        whichAnimal: null
-    }
 
     pickAnimal(animal){
         console.log(animal)
-    }  
+      }  
 
     render() { 
         return (

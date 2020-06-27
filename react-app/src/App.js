@@ -5,17 +5,25 @@ import './App.css';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Nav />
-      </header>
-      <ul>
-        <Photo imageUrl="https://via.placeholder.com/150"  />
-      </ul>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    whichAnimal: "cat",
+    image: "https://via.placeholder.com/150"
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Nav whichAnimal={this.state.whichAnimal} /> 
+        </header>
+        <ul>
+          <Photo imageUrl={this.state.image} />
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default App;
