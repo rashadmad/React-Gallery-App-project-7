@@ -17,12 +17,12 @@ class App extends Component {
     console.log(this.state)
   }  
 
-  pickAnimal = () => {
+  pickAnimal = (animal) => {
     this.setState( prevState => {
       return {
-        whichAnimal: prevState.whichAnimal = "Dogs"
+        whichAnimal: prevState.whichAnimal = animal
       }
-    });  
+    }, () => console.log(this.state.whichAnimal));  
   }
 
   render() {
@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Nav clickMe={this.pickAnimal} /> 
+          <Nav clickMe={() => this.pickAnimal()} /> 
         </header>
         <ul>
           <Photo imageUrl={this.state.image} />

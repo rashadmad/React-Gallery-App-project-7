@@ -10,9 +10,9 @@ class Nav extends Component {
         return (
             <nav>
                 <input type="text" placeholder="Search.."></input>
-                <button onClick={this.clickMe}>Cats</button> 
-                <button onClick={this.clickMe}>Dogs</button> 
-                <button onClick={this.clickMe}>Birds</button> 
+                <button onClick={this.clickMe()}>Cats</button> 
+                <button onClick={this.clickMe()}>Dogs</button> 
+                <button onClick={this.clickMe()}>Birds</button> 
             </nav>
         )
     }
