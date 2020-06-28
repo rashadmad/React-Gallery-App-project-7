@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Nav clickEvent={() => this.pickAnimal()} /> 
+          <Nav clickEvent={this.pickAnimal} /> 
         </header>
         <ul>
           <Photo imageUrl={this.state.image} />
