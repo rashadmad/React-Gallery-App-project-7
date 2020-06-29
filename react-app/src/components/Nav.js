@@ -19,7 +19,7 @@ class Nav extends Component {
     render() { 
         return (
             <BrowserRouter> 
-                <input type="search" id="site-search" name="q" aria-label="Search through site content"></input>
+                <input type="search" id="site-search" name="searchField" aria-label="Choose a topic to search for"></input>
                 <NavLink to="/search">Search</NavLink>
                 <nav>
                     <NavLink to={searchButtons[0]} onClick={this.clickEvent}>{searchButtons[0]}</NavLink> 
