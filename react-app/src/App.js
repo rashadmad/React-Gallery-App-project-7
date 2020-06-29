@@ -5,7 +5,7 @@ import './App.css';
 // import components
 import Nav from './components/Nav';
 import Photo from './components/Photo';
-import apiKey from 'config.js';
+import apiKey from './config.js';
 
 
 class App extends Component {
@@ -17,6 +17,7 @@ class App extends Component {
       whichAnimal: "cats"
     }
     console.log(this.state)
+    console.log(apiKey)
   }  
 
   pickAnimal = (animal) => {
