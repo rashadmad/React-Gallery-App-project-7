@@ -17,7 +17,6 @@ class App extends Component {
       whichAnimal: "cats"
     }
     console.log(this.state)
-    console.log(apiKey)
   }  
 
   pickAnimal = (animal) => {
