@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Link
-} from 'react-router-dom';
 
 import './config.js';
 import './App.css';
@@ -35,18 +30,14 @@ class App extends Component {
   render() {
 
     return (
-      <BrowserRouter> 
         <div className="App">
           <header className="App-header">
-            <input type="search" id="site-search" name="q" aria-label="Search through site content"></input>
-              <Link to="/search">Search</Link>
             <Nav clickEvent={this.pickAnimal} /> 
           </header>
           <ul>
             <Photo imageUrl={this.state.image} />
           </ul>
         </div>  
-      </BrowserRouter> 
     );
   }
 }
