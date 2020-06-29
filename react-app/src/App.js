@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import './config.js';
 import './App.css';
 
 // import components
 import Nav from './components/Nav';
 import Photo from './components/Photo';
+import apiKey from 'config.js';
 
 
 class App extends Component {
