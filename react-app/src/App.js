@@ -27,11 +27,10 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=cat&format=json&nojsoncallback=1')
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + this.animal + '&format=json&nojsoncallback=1')
     .then(response => response.json())
     .then(photoData => {
       this.setState({ images: photoData.photos.photo})
-      console.log(this.images)
     })
     .catch(error => {
       console.log('Error fetching data', error);
