@@ -8,12 +8,11 @@ import Nav from './components/Nav';
 import Photo from './components/Photo';
 import apiKey from './config.js';
 
-
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      image: "https://via.placeholder.com/150", 
+      images: {}, 
       whichAnimal: "cats"
     }
     console.log(this.state)
@@ -27,15 +26,27 @@ class App extends Component {
     }, () => console.log(this.state.whichAnimal));  
   }
 
-  render() {
+  componentDidMount(){
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=cat&format=json&nojsoncallback=1')
+    .then(response => response.json())
+    .then(photoData => {
+      this.setState({ images: photoData.photos.photo})
+      console.log(this.images)
+    })
+    .catch(error => {
+      console.log('Error fetching data', error);
+    });
+  }
 
+  render() {
+    console.log(this.state.images)
     return (
         <div className="App">
           <header className="App-header">
             <Nav clickEvent={this.pickAnimal} /> 
           </header>
           <ul>
-            <Photo imageUrl={this.state.image} />
+            <Photo imageUrl={this.state.images.photos} />
           </ul>
         </div>  
     );
