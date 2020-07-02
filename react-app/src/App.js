@@ -12,7 +12,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      images: {}, 
+      images: null, 
       whichAnimal: "cats"
     }
     console.log(this.state)
@@ -26,8 +26,10 @@ class App extends Component {
     }, () => console.log(this.state.whichAnimal));  
   }
 
+  generateImage = (imageArrayData,key) => 'http://farm' + imageArrayData[key].farm + 'staticflickr.com/' + imageArrayData[key].server + '/' + imageArrayData[key].photo_id + '_' + imageArrayData[key].secret + '.jpg';
+ 
   componentDidMount(){
-    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + this.animal + '&format=json&nojsoncallback=1')
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + this.whichAnimal + '&format=json&nojsoncallback=1')
     .then(response => response.json())
     .then(photoData => {
       this.setState({ images: photoData.photos.photo})
