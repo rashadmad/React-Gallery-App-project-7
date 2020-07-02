@@ -12,8 +12,8 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      images: null, 
-      whichAnimal: "cats"
+      images: ['https://via.placeholder.com/150/0000FF/808080%20?Text=Digital.com%20C/O%20https://placeholder.com/'], 
+      tag: "cats"
     }
     console.log(this.state)
   }  
@@ -21,18 +21,23 @@ class App extends Component {
   pickAnimal = (animal) => {
     this.setState( prevState => {
       return {
-        whichAnimal: prevState.whichAnimal = animal
+        tag: prevState.tag = animal
       }
-    }, () => console.log(this.state.whichAnimal));  
+    }, () => console.log(this.state.tag));  
   }
 
-  generateImage = (imageArrayData,key) => 'http://farm' + imageArrayData[key].farm + 'staticflickr.com/' + imageArrayData[key].server + '/' + imageArrayData[key].photo_id + '_' + imageArrayData[key].secret + '.jpg';
- 
+  generateImage = () => {
+    const generatedUrl = 'http://farm' + this.state.images[0].farm + '.staticflickr.com/' + this.state.images[0].id + '/' + this.state.images[0].id + '_' + this.state.images[0].secret + '.jpg';
+    console.log(this.state.images)
+    return generatedUrl
+  }
+
   componentDidMount(){
-    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + this.whichAnimal + '&format=json&nojsoncallback=1')
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + this.tag + '&perpage=24&format=json&nojsoncallback=1')
     .then(response => response.json())
     .then(photoData => {
       this.setState({ images: photoData.photos.photo})
+      debugger
     })
     .catch(error => {
       console.log('Error fetching data', error);
@@ -40,14 +45,13 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.images)
     return (
         <div className="App">
           <header className="App-header">
-            <Nav clickEvent={this.pickAnimal} /> 
+            <Nav clickEvent={this.tag} /> 
           </header>
           <ul>
-            <Photo imageUrl={this.state.images.photos} />
+            <Photo imageUrl={this.generateImage()} />
           </ul>
         </div>  
     );
