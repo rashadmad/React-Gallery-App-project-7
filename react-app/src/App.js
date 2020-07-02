@@ -13,6 +13,7 @@ class App extends Component {
     super()
     this.state = {
       images: [], 
+      imageUrls: [],
       tag: "cats"
     }
     console.log(this.state)
@@ -32,9 +33,15 @@ class App extends Component {
     .then(photoData => {
       this.setState({ images: photoData.photos.photo})
       //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
-      let n = 1;
-      const generatedUrl = 'https://farm' + this.state.images[n].farm + '.staticflickr.com/' + this.state.images[n].server + '/' + this.state.images[n].id + '_' + this.state.images[n].secret + '.jpg';
-      console.log(generatedUrl)
+      
+      let i = 0;
+      const generatedUrl = (n) => 'https://farm' + this.state.images[n].farm + '.staticflickr.com/' + this.state.images[n].server + '/' + this.state.images[n].id + '_' + this.state.images[n].secret + '.jpg';
+      
+      while (i < 16) { 
+        this.state.imageUrls.push(generatedUrl(i));
+        i++;
+      }
+      console.log(this.state.imageUrls)
     })
     .catch(error => {
       console.log('Error fetching data', error);
