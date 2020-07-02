@@ -12,7 +12,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      images: ['https://via.placeholder.com/150/0000FF/808080%20?Text=Digital.com%20C/O%20https://placeholder.com/'], 
+      images: [], 
       tag: "cats"
     }
     console.log(this.state)
@@ -26,18 +26,15 @@ class App extends Component {
     }, () => console.log(this.state.tag));  
   }
 
-  generateImage = () => {
-    const generatedUrl = 'http://farm' + this.state.images[0].farm + '.staticflickr.com/' + this.state.images[0].id + '/' + this.state.images[0].id + '_' + this.state.images[0].secret + '.jpg';
-    console.log(this.state.images)
-    return generatedUrl
-  }
-
   componentDidMount(){
-    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + this.tag + '&perpage=24&format=json&nojsoncallback=1')
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
     .then(response => response.json())
     .then(photoData => {
       this.setState({ images: photoData.photos.photo})
-      debugger
+      //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
+      let n = 1;
+      const generatedUrl = 'https://farm' + this.state.images[n].farm + '.staticflickr.com/' + this.state.images[n].server + '/' + this.state.images[n].id + '_' + this.state.images[n].secret + '.jpg';
+      console.log(generatedUrl)
     })
     .catch(error => {
       console.log('Error fetching data', error);
@@ -51,7 +48,7 @@ class App extends Component {
             <Nav clickEvent={this.tag} /> 
           </header>
           <ul>
-            <Photo imageUrl={this.generateImage()} />
+            <Photo imageUrl={this.state.images} />
           </ul>
         </div>  
     );
