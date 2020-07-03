@@ -5,7 +5,7 @@ class Photo extends Component {
     render() {
         return (
             <li>
-            <img src={this.props.imageUrl} alt="placeholder" width="500" height="600"></img>
+            <img title={this.props.title} key={this.props.myKey} src={this.props.imageSrc} alt="placeholder" width="500" height="600"></img>
             </li>
         );
     }    

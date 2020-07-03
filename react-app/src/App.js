@@ -13,10 +13,8 @@ class App extends Component {
     super()
     this.state = {
       images: [], 
-      imageUrls: [],
       tag: "cats"
     }
-    console.log(this.state)
   }  
 
   pickAnimal = (animal) => {
@@ -24,38 +22,36 @@ class App extends Component {
       return {
         tag: prevState.tag = animal
       }
-    }, () => console.log(this.state.tag));  
+    })
+  }
+
+  generateUrl = (arrayItem) => {
+    //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
+    return '//https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
   }
 
   componentDidMount(){
     fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
     .then(response => response.json())
     .then(photoData => {
-      this.setState({ images: photoData.photos.photo})
-      //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
-      
-      let i = 0;
-      const generatedUrl = (n) => 'https://farm' + this.state.images[n].farm + '.staticflickr.com/' + this.state.images[n].server + '/' + this.state.images[n].id + '_' + this.state.images[n].secret + '.jpg';
-      
-      while (i < 16) { 
-        this.state.imageUrls.push(generatedUrl(i));
-        i++;
-      }
-      console.log(this.state.imageUrls)
+      this.setState({
+          images: photoData
+      })
+      console.log(this.state.images)
     })
     .catch(error => {
-      console.log('Error fetching data', error);
+        console.log('Error fetching data', error);
     });
   }
 
   render() {
     return (
         <div className="App">
-          <header className="App-header">
+          <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
           <ul>
-            <Photo imageUrl={this.state.images} />
+            <Photo key={0} title={"myPicture"} imageSrc={"https://farm66.staticflickr.com/65535/50033686893_77ab54790c.jpg"} /> 
           </ul>
         </div>  
     );
