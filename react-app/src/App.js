@@ -13,6 +13,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
+      titles: [],
       images: [],
       farms: [],
       severs: [],
@@ -31,7 +32,7 @@ class App extends Component {
 
   generateUrl = (arrayItem) => {
     //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
-    return '//https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
+    return 'https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
   } 
   
   componentDidMount(){
@@ -40,9 +41,10 @@ class App extends Component {
       this.setState({
         images: response.data.photos.photo.map(imageData => this.generateUrl(imageData)),
         farms: response.data.photos.photo.map(farmNum => farmNum.farm),
-        severs: response.data.photos.photo.map(farmNum => farmNum.server),
-        keys: response.data.photos.photo.map(farmNum => farmNum.id),
-        secrets: response.data.photos.photo.map(farmNum => farmNum.secret)
+        severs: response.data.photos.photo.map(serverNum => serverNum.server),
+        keys: response.data.photos.photo.map(keyNum => keyNum.id),
+        secrets: response.data.photos.photo.map(farmNum => farmNum.secret),
+        titles: response.data.photos.photo.map(name => name.title) 
       })
     })
     .catch(error => {
@@ -53,12 +55,19 @@ class App extends Component {
   
 
   render() {
-    console.log(this.state.secrets)
+    console.log(this.state.titles[0])
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
+          <ul>
+            <Photo 
+              title= {this.state.titles[0]}
+              myKey= {this.state.keys[0]}
+              imageSrc= {this.state.images[0]}
+            />
+          </ul>
         </div>  
     );
   }
