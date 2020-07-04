@@ -31,32 +31,24 @@ class App extends Component {
   } 
 
   componentDidMount(){
-    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
-    .then(response => response.json())
-    .then(listOfPhotData => {
-      return listOfPhotData.photos.photo
-    })
-    .then(imageData => { 
-      this.setState({images: imageData})
+    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
+    .try(response => {
+      this.setState({
+        images: response.data.photos.photo
+      })
     })
     .catch(error => {
-        console.log('Error fetching data', error);
+      console.log(error)
     });
   }
 
   render() {
+    console.log(this.state.images[0][0])
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
-          <ul>
-            <Photo 
-              myKey={0} 
-              title={this.state.images[0].title} 
-              imageSrc={this.state.generateUrl(this.state.images[0])} 
-            /> 
-          </ul>
         </div>  
     );
   }
