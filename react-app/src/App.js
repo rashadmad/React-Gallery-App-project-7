@@ -4,6 +4,7 @@ import './config.js';
 import './App.css';
 
 // import components
+import Axios from 'axios';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 import apiKey from './config.js';
