@@ -13,7 +13,11 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      images: []
+      images: [],
+      farms: [],
+      severs: [],
+      keys: [],
+      secrets: []
     }
   }  
 
@@ -29,12 +33,16 @@ class App extends Component {
     //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
     return '//https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
   } 
-
+  
   componentDidMount(){
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
-    .try(response => {
+    .then(response => {
       this.setState({
-        images: response.data.photos.photo
+        images: response.data.photos.photo.map(imageData => this.generateUrl(imageData)),
+        farms: response.data.photos.photo.map(farmNum => farmNum.farm),
+        severs: response.data.photos.photo.map(farmNum => farmNum.server),
+        keys: response.data.photos.photo.map(farmNum => farmNum.id),
+        secrets: response.data.photos.photo.map(farmNum => farmNum.secret)
       })
     })
     .catch(error => {
@@ -42,8 +50,10 @@ class App extends Component {
     });
   }
 
+  
+
   render() {
-    console.log(this.state.images[0][0])
+    console.log(this.state.secrets)
     return (
         <div className="App">
           <header className="App-header">3
