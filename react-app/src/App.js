@@ -12,8 +12,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      images: [], 
-      tag: "cats"
+      images: []
     }
   }  
 
@@ -28,16 +27,16 @@ class App extends Component {
   generateUrl = (arrayItem) => {
     //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
     return '//https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
-  }
+  } 
 
   componentDidMount(){
     fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
     .then(response => response.json())
-    .then(photoData => {
-      this.setState({
-          images: photoData
-      })
-      console.log(this.state.images)
+    .then(listOfPhotData => {
+      return listOfPhotData.photos.photo
+    })
+    .then(imageData => { 
+      this.setState({images: imageData})
     })
     .catch(error => {
         console.log('Error fetching data', error);
@@ -51,7 +50,11 @@ class App extends Component {
             <Nav clickEvent={this.tag} /> 
           </header>
           <ul>
-            <Photo key={0} title={"myPicture"} imageSrc={"https://farm66.staticflickr.com/65535/50033686893_77ab54790c.jpg"} /> 
+            <Photo 
+              myKey={0} 
+              title={this.state.images[0].title} 
+              imageSrc={this.state.generateUrl(this.state.images[0])} 
+            /> 
           </ul>
         </div>  
     );
