@@ -37,7 +37,7 @@ class App extends Component {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
     .then(response => {
         this.setState({
-          imageData: response.data.photos.photo
+          imageData: _.clone(response.data.photos.photo)
         })
     })
     .catch(error => {
@@ -51,7 +51,7 @@ class App extends Component {
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
     if (this.state.imageData)
-    console.log(this.state.imageData[0])
+    console.log(this.state.imageData[0][0])
     return (
         <div className="App">
           <header className="App-header">3
