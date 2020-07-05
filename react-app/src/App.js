@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   generateUrl = (arrayItem) => {
-    //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
+    //example generated url: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
     return 'https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
   } 
   
@@ -50,12 +50,13 @@ class App extends Component {
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
     if (this.state.imageData)
+    console.log(this.state.imageData[0])
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
-          
+
         </div>  
     );
   }
