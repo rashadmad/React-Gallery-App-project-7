@@ -13,12 +13,9 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      titles: [],
+      requestFailed: true,
       images: [],
-      farms: [],
-      severs: [],
-      keys: [],
-      secrets: []
+      imageData: []
     }
   }  
 
@@ -38,36 +35,27 @@ class App extends Component {
   componentDidMount(){
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
     .then(response => {
-      this.setState({
-        images: response.data.photos.photo.map(imageData => this.generateUrl(imageData)),
-        farms: response.data.photos.photo.map(farmNum => farmNum.farm),
-        severs: response.data.photos.photo.map(serverNum => serverNum.server),
-        keys: response.data.photos.photo.map(keyNum => keyNum.id),
-        secrets: response.data.photos.photo.map(farmNum => farmNum.secret),
-        titles: response.data.photos.photo.map(name => name.title) 
-      })
+        this.setState({
+          imageData: response.data.photos.photo
+        })
     })
     .catch(error => {
       console.log(error)
+      this.setState({
+        requestFailed: true
+      })
     });
   }
 
-  
-
   render() {
-    console.log(this.state.titles[0])
+    if (!this.state.requestFailed) return <p>Request failed</p>
+    if (this.state.imageData)
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
-          <ul>
-            <Photo 
-              title= {this.state.titles[0]}
-              myKey= {this.state.keys[0]}
-              imageSrc= {this.state.images[0]}
-            />
-          </ul>
+          
         </div>  
     );
   }
