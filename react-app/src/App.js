@@ -39,6 +39,14 @@ class App extends Component {
         this.setState({
           imageData: parsedJSON.data.photos.photo
         })
+        return parsedJSON
+    })
+    .then(data => {
+      const imageData = data.data.photos.photo
+      let stuff = imageData.map(image => this.generateUrl(image))
+        this.setState({
+          images: stuff
+      })
     })
     .catch(error => {
       console.log(error)
@@ -51,7 +59,7 @@ class App extends Component {
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
     if (this.state.imageData) 
-    console.log(this.state.imageData[0])
+    console.log(this.state.images[0])
     return (
         <div className="App">
           <header className="App-header">3
