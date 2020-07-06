@@ -35,8 +35,9 @@ class App extends Component {
   componentDidMount(){
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
     .then(response => {
+    const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
-          imageData: response.data.photos.photo
+          imageData: parsedJSON.data.photos.photo
         })
     })
     .catch(error => {
@@ -49,7 +50,7 @@ class App extends Component {
 
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
-    if (this.state.imageData)
+    if (this.state.imageData) 
     console.log(this.state.imageData[0])
     return (
         <div className="App">
@@ -63,3 +64,4 @@ class App extends Component {
 }
 
 export default App;
+
