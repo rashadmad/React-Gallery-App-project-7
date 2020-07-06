@@ -15,7 +15,9 @@ class App extends Component {
     this.state = {
       requestFailed: true,
       images: [],
-      imageData: []
+      imageData: [],
+      tag: "Cats",
+      numberOfImages: 16
     }
   }  
 
@@ -33,7 +35,7 @@ class App extends Component {
   } 
   
   componentDidMount(){
-    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
+    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     .then(response => {
     const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
@@ -70,6 +72,7 @@ class App extends Component {
                 <Photo 
                   key={index}
                   imageSrc={image} 
+
                 />
             )}
           </ul>
