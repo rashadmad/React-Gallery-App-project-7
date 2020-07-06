@@ -66,8 +66,9 @@ class App extends Component {
             <Nav clickEvent={this.tag} /> 
           </header>
           <ul>
-            {this.state.images.map(image => 
+            {this.state.images.map((image,index) => 
                 <Photo 
+                  key={index}
                   imageSrc={image} 
                 />
             )}
