@@ -47,6 +47,7 @@ class App extends Component {
         this.setState({
           images: stuff
       })
+      return imageData
     })
     .catch(error => {
       console.log(error)
@@ -59,13 +60,18 @@ class App extends Component {
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
     if (this.state.imageData) 
-    console.log(this.state.images[0])
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
-
+          <ul>
+            {this.state.images.map(image => 
+                <Photo 
+                  imageSrc={image} 
+                />
+            )}
+          </ul>
         </div>  
     );
   }
