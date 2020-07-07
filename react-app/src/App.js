@@ -16,8 +16,8 @@ class App extends Component {
     super()
     this.state = {
       requestFailed: true,
-      images: [],
-      imageData: [],
+      images: null,
+      imageData: null,
       tag: "Cats",
       numberOfImages: 16
     }
@@ -63,25 +63,13 @@ class App extends Component {
 
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
-    if (this.state.imageData) 
-    console.log(this.imageData.title)
+    if (!this.state.imageData.title && !this.state.imageData.title) return <p>Loading...</p>
+    if (this.state.imageData.title && this.state.imageData.title)
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
-          <ul>
-            {this.state.imageData.map((photoData, index) =>
-               <Photo 
-                imageSrc= {this.generateUrl(photoData)}
-                title= {photoData.title}
-                key= {index}
-               />
-            )}
-            {console.log(this.generateUrl(photoData))}
-            {console.log(photoData.title)}
-            {console.log(index)}
-          </ul>
         </div>  
     );
   }
