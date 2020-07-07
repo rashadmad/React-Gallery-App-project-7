@@ -8,8 +8,15 @@ import Axios from 'axios';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 import apiKey from './config.js';
+import Search from './components/Nav';
+
 import _ from 'lodash';
-import deepClone from 'lodash'
+import deepClone from 'lodash';
+import {
+  BrowserRouter,
+  Route,
+  NavLink
+} from 'react-router-dom';
 
 class App extends Component {
   constructor(){
@@ -62,15 +69,15 @@ class App extends Component {
   }
 
   render() {
-    if (!this.state.requestFailed) return <p>Request failed</p>
-    if (!this.state.imageData.title && !this.state.imageData.title) return <p>Loading...</p>
-    if (this.state.imageData.title && this.state.imageData.title)
     return (
-        <div className="App">
-          <header className="App-header">3
-            <Nav clickEvent={this.tag} /> 
-          </header>
-        </div>  
+        <BrowserRouter>
+          <Nav clickEvent={this.tag} /> 
+          <div className="App">
+              <Route path="/search" component={Search} />
+              <Route path="/search" component={Search} />  
+              <Route path="/search" component={Search} />        
+          </div>
+        </BrowserRouter>
     );
   }
 }
