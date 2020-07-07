@@ -17,7 +17,9 @@ class App extends Component {
     this.state = {
       requestFailed: true,
       images: [],
-      imageData: []
+      imageData: [],
+      tag: "Cats",
+      numberOfImages: 16
     }
   }  
 
@@ -35,12 +37,22 @@ class App extends Component {
   } 
   
   componentDidMount(){
-    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=24&tags=' + this.tag + '&format=json&nojsoncallback=1')
+    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     .then(response => {
+    const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
-          imageData: deepClone(response.data.photo.photos)
+          imageData: parsedJSON.data.photos.photo
         })
-    },console.log(this.state.imageData))
+        return parsedJSON
+    })
+    .then(data => {
+      const imageData = data.data.photos.photo
+      let stuff = imageData.map(image => this.generateUrl(image))
+        this.setState({
+          images: stuff
+      })
+      return imageData
+    })
     .catch(error => {
       console.log(error)
       this.setState({
@@ -51,17 +63,29 @@ class App extends Component {
 
   render() {
     if (!this.state.requestFailed) return <p>Request failed</p>
-    if (this.state.imageData)
-    console.log(this.state.imageData)
+    if (this.state.imageData) 
+    console.log(this.imageData.title)
     return (
         <div className="App">
           <header className="App-header">3
             <Nav clickEvent={this.tag} /> 
           </header>
-
+          <ul>
+            {this.state.imageData.map((photoData, index) =>
+               <Photo 
+                imageSrc= {this.generateUrl(photoData)}
+                title= {photoData.title}
+                key= {index}
+               />
+            )}
+            {console.log(this.generateUrl(photoData))}
+            {console.log(photoData.title)}
+            {console.log(index)}
+          </ul>
         </div>  
     );
   }
 }
 
 export default App;
+
