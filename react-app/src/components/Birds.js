@@ -4,7 +4,7 @@ class Birds extends Component {
 
     render() {
         return (
-            <p>display Birds</p>
+            <p>Display Birds</p>
         );
     }    
 }

@@ -8,7 +8,13 @@ import Axios from 'axios';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 import apiKey from './config.js';
+
+// routes
 import Search from './components/Search';
+import Cats from './components/Cats';
+import Dogs from './components/Dogs';
+import Birds from './components/Birds';
+import PageNotFound from './components/PageNotFound';
 
 import _ from 'lodash';
 import deepClone from 'lodash';
@@ -75,9 +81,10 @@ class App extends Component {
           <Nav clickEvent={this.tag} /> 
           <Switch>
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
-            <Route path="/Cats" render={ () => <Search searchValue='Cats' />} />
-            <Route path="/Dogs" render={ () => <Search searchValue='Dogs' />} />
-            <Route path="/Birds" render={ () => <Search searchValue='Birds' />} />
+            <Route path="/Cats" render={ () => <Cats searchValue='Cats' />} />
+            <Route path="/Dogs" render={ () => <Dogs searchValue='Dogs' />} />
+            <Route path="/Birds" render={ () => <Birds searchValue='Birds' />} />
+            <Route path="/" component={PageNotFound} />
           </Switch>
         </BrowserRouter>
     );
