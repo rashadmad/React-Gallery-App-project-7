@@ -72,7 +72,7 @@ class App extends Component {
     return (
         <BrowserRouter>
           <Nav clickEvent={this.tag} /> 
-          <Route path="/search" render={ () => <Search searchValue='' />} />
+          <Route path="/search" render={ () => <Search searchValue='search value' />} />
         </BrowserRouter>
     );
   }

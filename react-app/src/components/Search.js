@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
-const Search = () => <p>This is the search</p>
+class Search extends Component {
+    render(){
+      return <p>{this.props.searchValue}</p>
+    }
+}
 
 export default Search;
