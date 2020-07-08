@@ -13,6 +13,7 @@ const searchButtons = [
 class Nav extends Component {
 
     clickEvent = (event) => {
+        console.log("print")
     }
 
     render() { 

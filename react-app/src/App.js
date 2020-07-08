@@ -8,7 +8,7 @@ import Axios from 'axios';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 import apiKey from './config.js';
-import Search from './components/Nav';
+import Search from './components/Search';
 
 import _ from 'lodash';
 import deepClone from 'lodash';
@@ -72,11 +72,7 @@ class App extends Component {
     return (
         <BrowserRouter>
           <Nav clickEvent={this.tag} /> 
-          <div className="App">
-              <Route path="/search" component={Search} />
-              <Route path="/search" component={Search} />  
-              <Route path="/search" component={Search} />        
-          </div>
+          <Route path="/search" component={Search} />
         </BrowserRouter>
     );
   }
