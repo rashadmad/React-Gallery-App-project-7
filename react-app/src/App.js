@@ -14,6 +14,7 @@ import _ from 'lodash';
 import deepClone from 'lodash';
 import {
   BrowserRouter,
+  Switch,
   Route,
   NavLink
 } from 'react-router-dom';
@@ -72,7 +73,12 @@ class App extends Component {
     return (
         <BrowserRouter>
           <Nav clickEvent={this.tag} /> 
-          <Route path="/search" render={ () => <Search searchValue='search value' />} />
+          <Switch>
+            <Route path="/search" render={ () => <Search searchValue='search value' />} />
+            <Route path="/Cats" render={ () => <Search searchValue='Cats' />} />
+            <Route path="/Dogs" render={ () => <Search searchValue='Dogs' />} />
+            <Route path="/Birds" render={ () => <Search searchValue='Birds' />} />
+          </Switch>
         </BrowserRouter>
     );
   }
