@@ -80,6 +80,7 @@ class App extends Component {
         <BrowserRouter>
           <Nav clickEvent={this.tag} /> 
           <Switch>
+            <Route exact path="/" render={ () => <Search searchValue='search value' />} />
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
             <Route path="/Cats" render={ () => <Cats searchValue='Cats' />} />
             <Route path="/Dogs" render={ () => <Dogs searchValue='Dogs' />} />
