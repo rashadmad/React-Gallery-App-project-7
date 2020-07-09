@@ -37,10 +37,10 @@ class App extends Component {
     }
   }  
 
-  pickAnimal = (animal) => {
+  updateTag = (newValue) => {
     this.setState( prevState => {
       return {
-        tag: prevState.tag = animal
+        tag: prevState.tag = newValue
       }
     })
   }
@@ -78,7 +78,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Nav clickEvent={this.tag} /> 
+          <Nav generateGallery={this.updateTag} /> 
           <Switch>
             <Route exact path="/" render={ () => <Search searchValue='search value' />} />
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
