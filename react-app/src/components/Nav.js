@@ -16,7 +16,7 @@ class Nav extends Component {
           name="searchField"
           aria-label="Choose a topic to search for"
         ></input>
-        <NavLink to="/search" onClick={this.onSearch}>
+        <NavLink to="/search" onClick={this.props.updateTag}>
           Search
         </NavLink>
         <nav>

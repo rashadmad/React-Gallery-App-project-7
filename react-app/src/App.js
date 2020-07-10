@@ -38,10 +38,10 @@ class App extends Component {
     }
   }  
 
-  updateTag = (newValue) => {
+  updateTag = () => {
     this.setState( prevState => {
       return {
-        tag: prevState.tag = newValue
+        tag: prevState.tag = this.state.value
       }
     })
   }
@@ -85,7 +85,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Nav value={this.state.value} handleValueChange= {this.handleValueChange} /> 
+          <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} /> 
           <Switch>
             <Route exact path="/" render={ () => <Search searchValue='search value' />} />
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
