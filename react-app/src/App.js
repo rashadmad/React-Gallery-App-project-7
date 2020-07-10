@@ -78,7 +78,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Nav generateGallery={this.updateTag} /> 
+          <Nav searchValue={this.state.tag} /> 
           <Switch>
             <Route exact path="/" render={ () => <Search searchValue='search value' />} />
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
