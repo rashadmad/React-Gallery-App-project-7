@@ -4,25 +4,13 @@ import { BrowserRouter, Route, NavLink } from "react-router-dom";
 const searchButtons = ["Cats", "Dogs", "Birds"];
 
 class Nav extends Component {
-  constructor() {
-    super();
-    this.state = {
-      value: "hello",
-    };
-  }
-  handleValueChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-    console.log(this.state.value);
-  };
 
   render() {
     return (
       <Route>
         <input
-          value={this.state.value}
-          onChange={this.handleValueChange}
+          value={this.props.value}
+          onChange={this.props.handleValueChange}
           type="search"
           id="site-search"
           name="searchField"

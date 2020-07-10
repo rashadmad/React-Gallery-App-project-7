@@ -33,7 +33,8 @@ class App extends Component {
       images: null,
       imageData: null,
       tag: "Cats",
-      numberOfImages: 16
+      numberOfImages: 16,
+      value: ''
     }
   }  
 
@@ -44,6 +45,12 @@ class App extends Component {
       }
     })
   }
+
+  handleValueChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
 
   generateUrl = (arrayItem) => {
     //example generated url: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
@@ -78,7 +85,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Nav searchValue={this.state.tag} /> 
+          <Nav value={this.state.value} handleValueChange= {this.handleValueChange} /> 
           <Switch>
             <Route exact path="/" render={ () => <Search searchValue='search value' />} />
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
