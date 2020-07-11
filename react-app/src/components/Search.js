@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 
 class Search extends Component {
     render(){
-      return <p>{this.props.searchValue}</p>
+      console.log(this.props.images)
+      return (
+        <p>
+          blah
+        </p>
+      )
     }
 }
 
