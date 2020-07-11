@@ -20,9 +20,9 @@ class Nav extends Component {
           Search
         </NavLink>
         <nav>
-          <NavLink to={"/" + searchButtons[0]}>{searchButtons[0]}</NavLink>
-          <NavLink to={"/" + searchButtons[1]}>{searchButtons[1]}</NavLink>
-          <NavLink to={"/" + searchButtons[2]}>{searchButtons[2]}</NavLink>
+          <NavLink to={"/" + searchButtons[0]} onClick={this.props.pickAnimal}>{searchButtons[0]}</NavLink>
+          <NavLink to={"/" + searchButtons[1]} onClick={this.props.pickAnimal}>{searchButtons[1]}</NavLink>
+          <NavLink to={"/" + searchButtons[2]} onClick={this.props.pickAnimal}>{searchButtons[2]}</NavLink>
         </nav>
       </Route>
     );

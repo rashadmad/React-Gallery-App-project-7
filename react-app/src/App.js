@@ -46,6 +46,12 @@ class App extends Component {
     })
   }
 
+  pickAnimal = (event) => {
+    this.setState({
+      tag: event.target.innerHTML
+    }); 
+  }
+
   handleValueChange = (event) => {
     this.setState({
       value: event.target.value,
@@ -85,7 +91,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} /> 
+          <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
           <Switch>
             <Route exact path="/" render={ () => <Search searchValue='search value' />} />
             <Route path="/search" render={ () => <Search searchValue='search value' />} />
