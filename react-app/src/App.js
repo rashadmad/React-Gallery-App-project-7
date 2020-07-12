@@ -42,11 +42,9 @@ class App extends Component {
     }
   }  
 
-
   searchApi = () => {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     .then(response => {
-      console.log('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
           imageData: parsedJSON.data.photos.photo
@@ -68,7 +66,6 @@ class App extends Component {
       })
     });
   }
-
   //handles changes for the item being searched
   updateTag = () => {
     this.setState( prevState => {
@@ -102,11 +99,11 @@ class App extends Component {
         <BrowserRouter>
           <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
           <Switch>
-            <Route exact path="/" render={ () => <Search images= {this.state.images} />} />
-            <Route path="/search" render={ () => <Search image= {this.state.imageData} />} />
-            <Route path="/Cats" render={ () => <Cats image= {this.state.imageData} />} />
-            <Route path="/Dogs" render={ () => <Dogs image= {this.state.imageData} />} />
-            <Route path="/Birds" render={ () => <Birds image= {this.state.imageData} />} />
+            <Route exact path="/" render={ () => <Search imageData= {this.state.images} />} />
+            <Route path="/search" render={ () => <Search imageData= {this.state.images} />} />
+            <Route path="/Cats" render={ () => <Cats imageData= {this.state.images} />} />
+            <Route path="/Dogs" render={ () => <Dogs imageData= {this.state.images} />} />
+            <Route path="/Birds" render={ () => <Birds imageData= {this.state.images} />} />
             <Route path="/" component={PageNotFound} />
           </Switch>
         </BrowserRouter>

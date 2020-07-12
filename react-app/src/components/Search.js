@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 class Search extends Component {
     render(){
+      console.log(this.imageData)
       return (
         <p>
-          blah
+          {this.props.imageData}
         </p>
       )
     }
