@@ -41,35 +41,12 @@ class App extends Component {
       value: ''
     }
   }  
-  //handles changes for the item being searched
-  updateTag = () => {
-    this.setState( prevState => {
-      return {
-        tag: prevState.tag = this.state.value
-      }
-    })
-  }
-  //when a search button is selected this triggers and communicates 
-  pickAnimal = (event) => {
-    this.setState({
-      tag: event.target.innerHTML
-    }); 
-  }
-  //manipulates state through the input field
-  handleValueChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-  };
-  //creates a url from the request
-  generateUrl = (arrayItem) => {
-    //example generated url: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
-    return 'https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
-  } 
-  //initiates after the component has mounted the dom brings in the api request using fetch
-  componentDidMount(){
+
+
+  searchApi = () => {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     .then(response => {
+      console.log('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
           imageData: parsedJSON.data.photos.photo
@@ -91,6 +68,34 @@ class App extends Component {
       })
     });
   }
+
+  //handles changes for the item being searched
+  updateTag = () => {
+    this.setState( prevState => {
+      return {
+        tag: prevState.tag = this.state.value
+      }
+    })
+    this.searchApi();
+  }
+  //when a search button is selected this triggers and communicates 
+  pickAnimal = (event) => {
+    this.setState({
+      tag: event.target.innerHTML
+    }); 
+    this.searchApi();
+  }
+  //manipulates state through the input field
+  handleValueChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
+  //creates a url from the request
+  generateUrl = (arrayItem) => {
+    //example generated url: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
+    return 'https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
+  } 
 
   render() {
     return (
