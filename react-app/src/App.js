@@ -30,34 +30,24 @@ class App extends Component {
     super()
     this.state = {
       requestFailed: true,
-      //array of image url
-      images: null,
       //raw json data
       imageData: null,
       //the designated item to pull from the api
       tag: "Cats",
-      numberOfImages: 16,
+      numberOfimageList: 16,
       //input field value
       value: ''
     }
   }  
 
   searchApi = () => {
-    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfImages + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
+    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfimageList + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
     .then(response => {
     const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
           imageData: parsedJSON.data.photos.photo
         })
         return parsedJSON
-    })
-    .then(data => {
-      const imageData = data.data.photos.photo
-      let stuff = imageData.map(image => this.generateUrl(image))
-        this.setState({
-          images: stuff
-      })
-      return imageData
     })
     .catch(error => {
       console.log(error)
@@ -88,22 +78,17 @@ class App extends Component {
       value: event.target.value,
     });
   };
-  //creates a url from the request
-  generateUrl = (arrayItem) => {
-    //example generated url: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg  
-    return 'https://farm' + arrayItem.farm + '.staticflickr.com/' + arrayItem.server + '/' + arrayItem.id + '_' + arrayItem.secret + '.jpg'
-  } 
 
   render() {
     return (
         <BrowserRouter>
           <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
           <Switch>
-            <Route exact path="/" render={ () => <Search imageData= {this.state.images} />} />
-            <Route path="/search" render={ () => <Search imageData= {this.state.images} />} />
-            <Route path="/Cats" render={ () => <Cats imageData= {this.state.images} />} />
-            <Route path="/Dogs" render={ () => <Dogs imageData= {this.state.images} />} />
-            <Route path="/Birds" render={ () => <Birds imageData= {this.state.images} />} />
+            <Route exact path="/" render={ () => <Search imageData= {this.state.imageData} />} />
+            <Route path="/search" render={ () => <Search imageData= {this.state.imageData} />} />
+            <Route path="/Cats" render={ () => <Cats imageData= {this.state.imageData} />} />
+            <Route path="/Dogs" render={ () => <Dogs imageData= {this.state.imageData} />} />
+            <Route path="/Birds" render={ () => <Birds imageData= {this.state.imageData} />} />
             <Route path="/" component={PageNotFound} />
           </Switch>
         </BrowserRouter>
