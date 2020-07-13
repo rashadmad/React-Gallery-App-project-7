@@ -12,7 +12,7 @@ generateUrl = (arrayItem) => {
     render() {
         return (
             <li>
-                <img title={this.props.Title} key={this.props.Key} src={this.generateUrl(this.props.imageData)} alt={this.props.Title + " image"} width="500" height="600"></img>
+                <img title={this.props.Title} key={this.props.Key} src={this.generateUrl(this.props.data)} alt={this.props.Title + " image"} width="500" height="600"></img>
             </li>
         );
     }    

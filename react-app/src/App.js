@@ -10,7 +10,7 @@ import Photo from './components/Photo';
 import apiKey from './config.js';
 
 // routes
-import Search from './components/Search';
+import Search from './components/Gallery';
 import Cats from './components/Cats';
 import Dogs from './components/Dogs';
 import Birds from './components/Birds';
