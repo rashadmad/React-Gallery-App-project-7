@@ -16,8 +16,6 @@ import Dogs from './components/Dogs';
 import Birds from './components/Birds';
 import PageNotFound from './components/PageNotFound';
 
-import _ from 'lodash';
-import deepClone from 'lodash';
 import {
   BrowserRouter,
   Switch,
@@ -29,19 +27,21 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
+      //communicates to state if a response has failed
       requestFailed: true,
       //raw json data
       imageData: null,
-      //the designated item to pull from the api
+      //the default item to pull from the api
       tag: "Cats",
+      //designate amount of elements to view on search
       numberOfimageList: 16,
       //input field value
       value: ''
     }
   }  
 
-  searchApi = () => {
-    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + this.state.numberOfimageList + '&tags=' + this.state.tag + '&format=json&nojsoncallback=1')
+  searchApi = (amountToSearch,itemToSearch,) => {
+    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
     .then(response => {
     const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
@@ -63,14 +63,14 @@ class App extends Component {
         tag: prevState.tag = this.state.value
       }
     })
-    this.searchApi();
+    this.searchApi(16,this.state.tag);
   }
   //when a search button is selected this triggers and communicates 
   pickAnimal = (event) => {
     this.setState({
       tag: event.target.innerHTML
     }); 
-    this.searchApi();
+    this.searchApi(16,this.state.tag);
   }
   //manipulates state through the input field
   handleValueChange = (event) => {
