@@ -5,21 +5,16 @@ import Photo from "./Photo";
 
 class Gallery extends Component {
   
-  state = {
-    searchData: this.props.imageData
-  }
-  
   render() {
-    if (this.state.searchData == undefined) return (<p>loading</p>)
-    else
+    console.log(this.props.data)
     return (
       <ul>
-        {this.state.searchData.map((dataOfImage,index) => 
-          <Photo 
-            Title= {dataOfImage.title}
-            key= {index}
-            data= {dataOfImage}
-          />
+        {this.props.data.map((dataOfImage,index) => 
+            <Photo 
+              Title= {dataOfImage.title}
+              key= {index}
+              data= {dataOfImage}
+            />
         )}
       </ul>
     );

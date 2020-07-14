@@ -10,7 +10,8 @@ import Photo from './components/Photo';
 import apiKey from './config.js';
 
 // routes
-import Search from './components/Gallery';
+import Search from './components/Search';
+import Gallery from './components/Gallery';
 import Cats from './components/Cats';
 import Dogs from './components/Dogs';
 import Birds from './components/Birds';
@@ -33,8 +34,6 @@ class App extends Component {
       imageData: null,
       //the default item to pull from the api
       tag: "Cats",
-      //designate amount of elements to view on search
-      numberOfimageList: 16,
       //input field value
       value: ''
     }
