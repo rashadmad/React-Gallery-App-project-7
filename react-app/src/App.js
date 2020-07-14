@@ -8,6 +8,7 @@ import Axios from 'axios';
 import Nav from './components/Nav';
 import Photo from './components/Photo';
 import apiKey from './config.js';
+import { Provider } from './components/Context'
 
 // routes
 import Search from './components/Search';
@@ -81,6 +82,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
+        <Provider>
           <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
           <Switch>
             <Route exact path="/" render={ () => <Search imageData= {this.state.imageData} />} />
@@ -90,6 +92,7 @@ class App extends Component {
             <Route path="/Birds" render={ () => <Birds imageData= {this.state.imageData} />} />
             <Route path="/" component={PageNotFound} />
           </Switch>
+        </Provider>
         </BrowserRouter>
     );
   }
