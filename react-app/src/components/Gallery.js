@@ -11,16 +11,16 @@ class Gallery extends Component {
   
   render() {
     if (this.state.searchData == undefined) return (<p>loading</p>)
-    if (this.state.searchData != undefined)
+    else
     return (
       <ul>
-        {
-        <Photo 
-        Title= {this.state.searchData[0].title}
-        Key= {0}
-        data= {this.state.searchData[0]}
-        />
-      }
+        {this.state.searchData.map((dataOfImage,index) => 
+          <Photo 
+            Title= {dataOfImage.title}
+            key= {index}
+            data= {dataOfImage}
+          />
+        )}
       </ul>
     );
   }

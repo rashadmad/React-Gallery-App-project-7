@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+//todo: fix warning | `key` is not a prop.
 
 
 class Photo extends Component {
@@ -11,8 +11,8 @@ generateUrl = (arrayItem) => {
     
     render() {
         return (
-            <li>
-                <img title={this.props.Title} key={this.props.Key} src={this.generateUrl(this.props.data)} alt={this.props.Title + " image"} width="500" height="600"></img>
+            <li key={this.props.key}>
+                <img title={this.props.Title}src={this.generateUrl(this.props.data)} alt={this.props.Title + " image"} width="500" height="600"></img>
             </li>
         );
     }    
