@@ -10,10 +10,8 @@ class Search extends Component {
   }
   
   render() {
-    if (this.state.searchData === undefined) return (<p>loading</p>)
-    else
     return (
-        <Gallery data= {this.props.imageData} />
+        <Gallery data= {this.state.searchData} />
     );
   }
 }

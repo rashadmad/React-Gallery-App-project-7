@@ -45,7 +45,8 @@ class App extends Component {
     .then(response => {
     const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
-          imageData: parsedJSON.data.photos.photo
+          imageData: parsedJSON.data.photos.photo,
+          requestFailed: false
         })
         return parsedJSON
     })
@@ -82,7 +83,7 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-        <Provider>
+        <Provider value={this.state}>
           <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
           <Switch>
             <Route exact path="/" render={ () => <Search imageData= {this.state.imageData} />} />

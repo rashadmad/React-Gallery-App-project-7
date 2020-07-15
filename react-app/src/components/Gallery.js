@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Consumer } from './Context';
 
 //import components
 import Photo from "./Photo";
@@ -6,18 +7,25 @@ import Photo from "./Photo";
 class Gallery extends Component {
   
   render() {
-    console.log(this.props.data)
     return (
-      <ul>
-        {this.props.data.map((dataOfImage,index) => 
-            <Photo 
-              Title= {dataOfImage.title}
-              key= {index}
-              data= {dataOfImage}
-            />
-        )}
-      </ul>
-    );
+      <Consumer>
+        { context => {
+          if (context.requestFailed) return <p>loading</p>
+          else 
+          return (
+            <React.Fragment>
+            {context.imageData.map((image,index) =>  
+              <Photo 
+                Title= {image.title}
+                key= {index}
+                data= {image}
+              />
+            )}
+            </React.Fragment>
+          );
+        }}
+      </Consumer>  
+    )
   }
 }
 
