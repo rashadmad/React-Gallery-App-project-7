@@ -67,15 +67,13 @@ class App extends Component {
       return {
         tag: prevState.tag = this.state.value
       }
-    })
-    this.searchApi(16,this.state.tag);
+    },this.searchApi(16,this.state.tag))
   }
   //when a search button is selected this triggers and communicates 
   pickAnimal = (event) => {
     this.setState({
       tag: event.target.innerHTML
-    }); 
-    this.searchApi(16,this.state.tag);
+    },this.searchApi(16,this.state.tag));
   }
   //manipulates state through the input field
   handleValueChange = (event) => {
