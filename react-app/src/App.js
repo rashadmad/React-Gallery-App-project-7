@@ -34,11 +34,15 @@ class App extends Component {
       //raw json data
       imageData: null,
       //the default item to pull from the api
-      tag: "Cats",
+      tag: '',
       //input field value
       value: ''
     }
   }  
+
+  componentDidMount(){
+    this.searchApi(16,this.state.tag);
+  }
 
   searchApi = (amountToSearch,itemToSearch,) => {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
@@ -79,6 +83,7 @@ class App extends Component {
       value: event.target.value,
     });
   };
+  
 
   render() {
     return (
