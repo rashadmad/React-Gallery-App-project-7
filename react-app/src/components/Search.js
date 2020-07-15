@@ -11,7 +11,7 @@ class Search extends Component {
   
   render() {
     return (
-        <Gallery data= {this.state.searchData} />
+        <Gallery />
     );
   }
 }

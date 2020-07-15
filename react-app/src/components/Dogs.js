@@ -7,7 +7,10 @@ class Dogs extends Component {
   
   render() {
     return (
-        <Gallery data= {this.props.imageData} />
+      <React.Fragment>
+        <h1>Dog Images</h1>
+        <Gallery />
+      </React.Fragment>
     );
   }
 }

@@ -7,7 +7,10 @@ class Cats extends Component {
   
   render() {
     return (
-        <Gallery data= {this.props.imageData} />
+        <React.Fragment>
+          <h1>Cat Images</h1>
+          <Gallery />
+        </React.Fragment>
     );
   }
 }
