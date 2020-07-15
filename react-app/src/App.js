@@ -47,12 +47,11 @@ class App extends Component {
   searchApi = (amountToSearch,itemToSearch,) => {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
     .then(response => {
-    const parsedJSON = JSON.parse(JSON.stringify(response));
         this.setState({
-          imageData: parsedJSON.data.photos.photo,
+          imageData: response.data.photos.photo,
           requestFailed: false
         })
-        return parsedJSON
+        return response
     })
     .catch(error => {
       console.log(error)
