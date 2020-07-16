@@ -48,7 +48,7 @@ class App extends Component {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
     .then(response => {
         this.setState({
-          imageData: response.data.photos.photo,
+          imageData: response.data.photos.photo, 
           requestFailed: false
         })
         return response
@@ -85,17 +85,17 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-        <Provider value={this.state}>
-          <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
-          <Switch>
-            <Route exact path="/" render={ () => <Search imageData= {this.state.imageData} />} />
-            <Route path="/search" render={ () => <Search imageData= {this.state.imageData} />} />
-            <Route path="/Cats" render={ () => <Cats imageData= {this.state.imageData} />} />
-            <Route path="/Dogs" render={ () => <Dogs imageData= {this.state.imageData} />} />
-            <Route path="/Birds" render={ () => <Birds imageData= {this.state.imageData} />} />
-            <Route path="/" component={PageNotFound} />
-          </Switch>
-        </Provider>
+          <Provider value={this.state}>
+            <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
+            <Switch>
+              <Route exact path="/" render={ () => <Search imageData= {this.state.imageData} />} />
+              <Route path="/search" render={ () => <Search imageData= {this.state.imageData} />} />
+              <Route path="/Cats" render={ () => <Cats />} />
+              <Route path="/Dogs" render={ () => <Dogs />} />
+              <Route path="/Birds" render={ () => <Birds />} />
+              <Route path="/" component={PageNotFound} />
+            </Switch>
+          </Provider>
         </BrowserRouter>
     );
   }
