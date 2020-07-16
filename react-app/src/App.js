@@ -85,11 +85,13 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Provider value={this.state}>
+          <Provider value={{
+              applicationState: this.state
+            }}>
             <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
             <Switch>
-              <Route exact path="/" render={ () => <Search imageData= {this.state.imageData} />} />
-              <Route path="/search" render={ () => <Search imageData= {this.state.imageData} />} />
+              <Route exact path="/" render={ () => <Search />} />
+              <Route path="/search" render={ () => <Search />} />
               <Route path="/Cats" render={ () => <Cats />} />
               <Route path="/Dogs" render={ () => <Dogs />} />
               <Route path="/Birds" render={ () => <Birds />} />

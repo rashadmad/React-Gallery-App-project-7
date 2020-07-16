@@ -10,17 +10,16 @@ class Gallery extends Component {
     return (
       <Consumer>
         { context => {
-          if (context.requestFailed) return <p>loading</p>
+          if (context.applicationState.requestFailed) return <p>loading</p>
           else 
           return (
             <React.Fragment>
-            {context.imageData.map((image,index) =>  
+            {context.applicationState.imageData.map((image,index) =>  
               <Photo 
                 Title= {image.title}
                 key= {index}
                 data= {image}
-              />
-            )}
+              />)}
             </React.Fragment>
           );
         }}
