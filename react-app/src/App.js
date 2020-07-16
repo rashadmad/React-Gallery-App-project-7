@@ -26,7 +26,7 @@ import {
 } from 'react-router-dom';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
       //communicates to state if a response has failed
@@ -34,71 +34,64 @@ class App extends Component {
       //raw json data
       imageData: null,
       //the default item to pull from the api
-      tag: '',
-      //input field value
-      value: ''
+      tag: 'cats'
     }
-  }  
-
-  componentDidMount(){
-    this.searchApi(16,this.state.tag);
   }
 
-  searchApi = (amountToSearch,itemToSearch,) => {
+  searchApi = (amountToSearch, itemToSearch) => {
     Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
-    .then(response => {
+      .then(response => {
         this.setState({
-          imageData: response.data.photos.photo, 
+          imageData: response.data.photos.photo,
           requestFailed: false
         })
         return response
-    })
-    .catch(error => {
-      console.log(error)
-      this.setState({
-        requestFailed: true
       })
-    });
+      .catch(error => {
+        console.log(error)
+        this.setState({
+          requestFailed: true
+        })
+      });
   }
+
   //handles changes for the item being searched
-  updateTag = () => {
-    this.setState( prevState => {
-      return {
-        tag: prevState.tag = this.state.value
-      }
-    },this.searchApi(16,this.state.tag))
+  searchButtonClick = () => {
+    this.searchApi(16, this.state.tag)
   }
+
+
   //when a search button is selected this triggers and communicates 
   pickAnimal = (event) => {
     this.setState({
       tag: event.target.innerHTML
-    },this.searchApi(16,this.state.tag));
+    }, this.searchApi(16, this.state.tag));
   }
   //manipulates state through the input field
   handleValueChange = (event) => {
     this.setState({
-      value: event.target.value,
+      tag: event.target.value,
     });
   };
-  
+
 
   render() {
     return (
-        <BrowserRouter>
-          <Provider value={{
-              applicationState: this.state
-            }}>
-            <Nav value={this.state.value} handleValueChange={this.handleValueChange} updateTag={this.updateTag} pickAnimal={this.pickAnimal}/> 
-            <Switch>
-              <Route exact path="/" render={ () => <Search />} />
-              <Route path="/search" render={ () => <Search />} />
-              <Route path="/Cats" render={ () => <Cats />} />
-              <Route path="/Dogs" render={ () => <Dogs />} />
-              <Route path="/Birds" render={ () => <Birds />} />
-              <Route path="/" component={PageNotFound} />
-            </Switch>
-          </Provider>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Provider value={{
+          applicationState: this.state
+        }}>
+          <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
+          <Switch>
+            <Route exact path="/" render={() => <Search />} />
+            <Route path="/search" render={() => <Search />} />
+            <Route path="/Cats" render={() => <Cats />} />
+            <Route path="/Dogs" render={() => <Dogs />} />
+            <Route path="/Birds" render={() => <Birds />} />
+            <Route path="/" component={PageNotFound} />
+          </Switch>
+        </Provider>
+      </BrowserRouter>
     );
   }
 }

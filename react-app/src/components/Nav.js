@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
+import { Consumer } from './Context';
 
 const searchButtons = ["Cats", "Dogs", "Birds"];
 
@@ -7,6 +8,7 @@ class Nav extends Component {
 
   render() {
     return (
+
       <Route>
         <input
           value={this.props.value}
@@ -16,7 +18,7 @@ class Nav extends Component {
           name="searchField"
           aria-label="Choose a topic to search for"
         ></input>
-        <NavLink to="/search" onClick={this.props.updateTag}>
+        <NavLink to="/search" onClick={this.props.searchButtonClick}>
           Search
         </NavLink>
         <nav>
