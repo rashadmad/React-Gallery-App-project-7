@@ -21,8 +21,8 @@ class Nav extends Component {
               aria-label="Choose a topic to search for"
             ></input>
           </div>
-          <NavLink to='/somewhere'>
-            <button to="/search" onClick={this.props.searchButtonClick}>
+          <NavLink to="/search">
+            <button onClick={this.props.searchButtonClick}>
               Search
             </button>
           </NavLink>

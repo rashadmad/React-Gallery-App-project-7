@@ -5,14 +5,16 @@ import Gallery from "./Gallery";
 
 class Birds extends Component {
 
-render() {
+    render() {
         return (
-            <React.Fragment>
-                <h1>Birds Images</h1>
-                <Gallery />
-            </React.Fragment>
+          <React.Fragment>
+            <h1>Dog Images</h1>
+            <div className="photo-container">
+              <Gallery />
+            </div>  
+          </React.Fragment>
         );
+      }
     }
-}
 
 export default Birds;
