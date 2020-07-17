@@ -10,22 +10,28 @@ class Nav extends Component {
     return (
 
       <Route>
-        <input
-          value={this.props.value}
-          onChange={this.props.handleValueChange}
-          type="search"
-          id="site-search"
-          name="searchField"
-          aria-label="Choose a topic to search for"
-        ></input>
-        <NavLink to="/search" onClick={this.props.searchButtonClick}>
-          Search
-        </NavLink>
-        <nav>
-          <NavLink to={"/" + searchButtons[0]} onClick={this.props.pickAnimal}>{searchButtons[0]}</NavLink>
-          <NavLink to={"/" + searchButtons[1]} onClick={this.props.pickAnimal}>{searchButtons[1]}</NavLink>
-          <NavLink to={"/" + searchButtons[2]} onClick={this.props.pickAnimal}>{searchButtons[2]}</NavLink>
-        </nav>
+        <header>
+          <div className="search-form">
+            <input
+              value={this.props.value}
+              onChange={this.props.handleValueChange}
+              type="search"
+              id="site-search"
+              name="searchField"
+              aria-label="Choose a topic to search for"
+            ></input>
+          </div>
+          <NavLink to='/somewhere'>
+            <button to="/search" onClick={this.props.searchButtonClick}>
+              Search
+            </button>
+          </NavLink>
+          <nav className="main-nav">
+            <NavLink to={"/" + searchButtons[0]} onClick={this.props.pickAnimal}>{searchButtons[0]}</NavLink>
+            <NavLink to={"/" + searchButtons[1]} onClick={this.props.pickAnimal}>{searchButtons[1]}</NavLink>
+            <NavLink to={"/" + searchButtons[2]} onClick={this.props.pickAnimal}>{searchButtons[2]}</NavLink>
+          </nav>
+        </header>
       </Route>
     );
   }

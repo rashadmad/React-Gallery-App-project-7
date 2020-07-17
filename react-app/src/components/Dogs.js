@@ -9,7 +9,9 @@ class Dogs extends Component {
     return (
       <React.Fragment>
         <h1>Dog Images</h1>
-        <Gallery />
+        <div className="photo-container">
+          <Gallery />
+        </div>  
       </React.Fragment>
     );
   }

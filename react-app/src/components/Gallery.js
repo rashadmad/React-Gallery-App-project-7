@@ -8,6 +8,7 @@ class Gallery extends Component {
   
   render() {
     return (
+      <ul>
       <Consumer>
         { context => {
           if (context.applicationState.requestFailed) return <p>loading</p>
@@ -24,6 +25,7 @@ class Gallery extends Component {
           );
         }}
       </Consumer>  
+      </ul>
     )
   }
 }

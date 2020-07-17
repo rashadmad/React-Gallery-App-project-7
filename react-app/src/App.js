@@ -75,19 +75,19 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Provider value={{
-          applicationState: this.state
-        }}>
-          <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
-          <Switch>
-            <Route exact path="/" render={() => <Search />} />
-            <Route path="/search" render={() => <Search />} />
-            <Route path="/Cats" render={() => <Cats />} />
-            <Route path="/Dogs" render={() => <Dogs />} />
-            <Route path="/Birds" render={() => <Birds />} />
-            <Route path="/" component={PageNotFound} />
-          </Switch>
-        </Provider>
+          <Provider value={{
+            applicationState: this.state
+          }}>
+            <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
+            <Switch>
+              <Route exact path="/" render={() => <Search />} />
+              <Route path="/search" render={() => <Search />} />
+              <Route path="/Cats" render={() => <Cats />} />
+              <Route path="/Dogs" render={() => <Dogs />} />
+              <Route path="/Birds" render={() => <Birds />} />
+              <Route path="/" component={PageNotFound} />
+            </Switch>
+          </Provider>
       </BrowserRouter>
     );
   }
