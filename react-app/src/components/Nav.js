@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import { Consumer } from './Context';
+import { Route, NavLink } from "react-router-dom";
+import { FaSistrix } from "react-icons/fa";
+
 
 const searchButtons = ["Cats", "Dogs", "Birds"];
 
@@ -23,7 +24,7 @@ class Nav extends Component {
           </div>
           <NavLink to="/search">
             <button onClick={this.props.searchButtonClick}>
-              Submit
+            <FaSistrix />
             </button>
           </NavLink>
           <nav className="main-nav">
