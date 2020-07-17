@@ -11,8 +11,8 @@ generateUrl = (arrayItem) => {
     
     render() {
         return (
-            <li key={this.props.key}>
-                <img title={this.props.Title}src={this.generateUrl(this.props.data)} alt={this.props.Title + " image"}></img>
+            <li>
+                <img key={this.props.id} title={this.props.Title}src={this.generateUrl(this.props.data)} alt={this.props.Title + " image"}></img>
             </li>
         );
     }    
