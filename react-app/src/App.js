@@ -21,8 +21,7 @@ import PageNotFound from './components/PageNotFound';
 import {
   BrowserRouter,
   Switch,
-  Route,
-  NavLink
+  Route
 } from 'react-router-dom';
 
 class App extends Component {
@@ -34,7 +33,7 @@ class App extends Component {
       //raw json data
       imageData: null,
       //the default item to pull from the api
-      tag: 'cats'
+      tag: ''
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, NavLink } from "react-router-dom";
 import { FaSistrix } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 
 const searchButtons = ["Cats", "Dogs", "Birds"];
@@ -22,11 +23,11 @@ class Nav extends Component {
               aria-label="Choose a topic to search for"
               placeholder="Search"
             ></input>
-            <NavLink to="/search">
-              <button onClick={this.props.searchButtonClick}>
-              <FaSistrix />
-              </button>
-            </NavLink>  
+              <IconContext.Provider value={{ style: { margin: '15px 0px 0px 0px' } }}>
+              <NavLink to="/search" onClick={this.props.searchButtonClick}>
+                <FaSistrix />
+              </NavLink>
+              </IconContext.Provider>
           </div>
           <nav className="main-nav">
             <NavLink to={"/" + searchButtons[0]} onClick={this.props.pickAnimal}>{searchButtons[0]}</NavLink>
