@@ -62,9 +62,7 @@ class App extends Component {
 
   //when a search button is selected this triggers and communicates 
   pickAnimal = (event) => {
-    this.setState({
-      tag: event.target.innerHTML
-    })
+      this.searchApi(16, event.target.innerHTML);
   }
   
   //manipulates state through the input field
@@ -73,7 +71,6 @@ class App extends Component {
       tag: event.target.value,
     });
   };
-
 
   render() {
     return (
