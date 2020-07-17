@@ -5,7 +5,7 @@ import { Consumer } from './Context';
 import Photo from "./Photo";
 
 class Gallery extends Component {
-  
+
   render() {
     return (
       <ul>
