@@ -20,13 +20,14 @@ class Nav extends Component {
               id="site-search"
               name="searchField"
               aria-label="Choose a topic to search for"
+              placeholder="Search"
             ></input>
+            <NavLink to="/search">
+              <button onClick={this.props.searchButtonClick}>
+              <FaSistrix />
+              </button>
+            </NavLink>  
           </div>
-          <NavLink to="/search">
-            <button onClick={this.props.searchButtonClick}>
-            <FaSistrix />
-            </button>
-          </NavLink>
           <nav className="main-nav">
             <NavLink to={"/" + searchButtons[0]} onClick={this.props.pickAnimal}>{searchButtons[0]}</NavLink>
             <NavLink to={"/" + searchButtons[1]} onClick={this.props.pickAnimal}>{searchButtons[1]}</NavLink>
