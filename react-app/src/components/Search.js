@@ -7,7 +7,12 @@ class Search extends Component {
   
   render() {
     return (
-        <Gallery />
+      <React.Fragment>
+        <h1>{this.props.searchedTerm}</h1>
+        <div className="photo-container">
+          <Gallery />
+        </div>  
+      </React.Fragment>
     );
   }
 }

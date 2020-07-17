@@ -80,7 +80,7 @@ class App extends Component {
           }}>
             <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
             <Switch>
-              <Route exact path="/" render={() => <Search />} />
+              <Route exact path="/" render={() => <Search searchedTerm={this.state.tag}/>} />
               <Route path="/search" render={() => <Search />} />
               <Route path="/Cats" render={() => <Cats />} />
               <Route path="/Dogs" render={() => <Dogs />} />

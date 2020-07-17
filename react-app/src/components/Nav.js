@@ -23,7 +23,7 @@ class Nav extends Component {
           </div>
           <NavLink to="/search">
             <button onClick={this.props.searchButtonClick}>
-              Search
+              Submit
             </button>
           </NavLink>
           <nav className="main-nav">

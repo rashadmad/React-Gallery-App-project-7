@@ -55,6 +55,7 @@ input {
   background: #438bbd;
   border-radius: 3px;
   padding: 5px;
+  margin: 10px;
   color: #fff;
 }
 
@@ -70,6 +71,8 @@ input {
   justify-content: space-between;
   -ms-align-items: flex-start;
   align-items: flex-start;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .photo-container ul li {

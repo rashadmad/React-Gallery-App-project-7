@@ -8,7 +8,7 @@ class Cats extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Dog Images</h1>
+        <h1>Cat Images</h1>
         <div className="photo-container">
           <Gallery />
         </div>  
