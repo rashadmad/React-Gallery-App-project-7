@@ -11,7 +11,7 @@ class Gallery extends Component {
       <ul>
       <Consumer>
         { context => {
-          if (context.applicationState.requestFailed) return <p>loading</p>
+          if (context.applicationState.requestFailed) return <h4 className= "wrapper">Search flickr for images</h4>
           else 
           return (
             <React.Fragment>
