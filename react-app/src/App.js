@@ -29,7 +29,7 @@ class App extends Component {
     super()
     this.state = {
       //communicates to state if a response has failed
-      requestFailed: true,
+      requestIncomplete: true,
       //raw json data
       imageData: null,
       //the default item to pull from the api
@@ -42,14 +42,14 @@ class App extends Component {
       .then(response => {
         this.setState({
           imageData: response.data.photos.photo,
-          requestFailed: false
+          requestIncomplete: false
         })
         return response
       })
       .catch(error => {
         console.log(error)
         this.setState({
-          requestFailed: true
+          requestIncomplete: true
         })
       });
   }
