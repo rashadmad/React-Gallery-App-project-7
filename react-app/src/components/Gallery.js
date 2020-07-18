@@ -15,7 +15,7 @@ class Gallery extends Component {
           else 
           return (
             <React.Fragment>
-            {context.applicationState.imageData.map((image,index) =>  
+            {context.applicationState.imageData.map((image) =>  
               <Photo 
                 Title= {image.title}
                 key= {image.id}
