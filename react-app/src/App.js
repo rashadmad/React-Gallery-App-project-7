@@ -50,15 +50,6 @@ class App extends Component {
       })
   }
 
-  componentDidMount(){
-    //get the ending char of the current url
-    const url = window.location.pathname.substr(1);
-
-    if(url !== ""){
-      this.searchApi(24,url);
-    }
-  }
-
   //handles changes for the item being searched
   searchButtonClick = () => {
     this.searchApi(24, this.state.tag)
