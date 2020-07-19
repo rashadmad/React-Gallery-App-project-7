@@ -34,12 +34,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-    //get the ending char of the current url
-    const url = window.location.pathname.substr(1);
-    console.log(url)
-  }
-
   searchApi = (amountToSearch = 24, itemToSearch = "cats") => {
     fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
       .then(response => response.json())
@@ -54,6 +48,15 @@ class App extends Component {
           requestIncomplete: true
         })
       })
+  }
+
+  componentDidMount(){
+    //get the ending char of the current url
+    const url = window.location.pathname.substr(1);
+
+    if(url !== ""){
+      this.searchApi(24,url);
+    }
   }
 
   //handles changes for the item being searched
