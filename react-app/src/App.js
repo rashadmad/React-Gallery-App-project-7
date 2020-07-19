@@ -30,7 +30,7 @@ class App extends Component {
       //raw json data
       imageData: null,
       //the default item to pull from the api
-      tag: ''
+      tag: null
     }
   }
 
@@ -65,8 +65,12 @@ class App extends Component {
   }
 
   //when a search button is selected this triggers and communicates 
-  pickAnimal = (event) => {
-      this.searchApi(24, event.target.innerHTML);
+  pickAnimal = () => {
+    //get the ending char of the current url
+    const url = window.location.pathname.substr(1);
+    if(url !== ""){
+      this.searchApi(24,url);
+    }
   }
   
   //manipulates state through the input field
@@ -86,9 +90,9 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={() => <Search searchedTerm={this.state.tag}/>} />
               <Route path="/search" render={() => <Search />} />
-              <Route path="/Cats" render={() => <Cats />} />
-              <Route path="/Dogs" render={() => <Dogs />} />
-              <Route path="/Birds" render={() => <Birds />} />
+              <Route path="/Cats" render={() => <Cats pickAnimal={this.pickAnimal} />} />
+              <Route path="/Dogs" render={() => <Dogs pickAnimal={this.pickAnimal} />} />
+              <Route path="/Birds" render={() => <Birds pickAnimal={this.pickAnimal} />} />
               <Route path="/" component={PageNotFound} />
             </Switch>
           </Provider>

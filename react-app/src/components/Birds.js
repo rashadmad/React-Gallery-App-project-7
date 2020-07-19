@@ -5,6 +5,10 @@ import Gallery from "./Gallery";
 
 class Birds extends Component {
 
+  componentDidMount(){
+    this.props.pickAnimal()
+  }
+
     render() {
         return (
           <React.Fragment>
