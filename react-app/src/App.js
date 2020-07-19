@@ -4,15 +4,12 @@ import './config.js';
 import './App.css';
 
 // import components
-import Axios from 'axios';
 import Nav from './components/Nav';
-import Photo from './components/Photo';
 import apiKey from './config.js';
 import { Provider } from './components/Context'
 
 // routes
 import Search from './components/Search';
-import Gallery from './components/Gallery';
 import Cats from './components/Cats';
 import Dogs from './components/Dogs';
 import Birds from './components/Birds';
@@ -37,31 +34,34 @@ class App extends Component {
     }
   }
 
-  searchApi = (amountToSearch, itemToSearch) => {
-    Axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
-      .then(response => {
+  componentDidMount(){
+    this.searchApi();
+  }
+
+  searchApi = (amountToSearch = 24, itemToSearch = "cats") => {
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
+      .then(response => response.json())
+      .then(data => {
         this.setState({
-          imageData: response.data.photos.photo,
+          imageData: data.photos.photo,
           requestIncomplete: false
-        })
-        return response
+        });
       })
-      .catch(error => {
-        console.log(error)
+      .catch(error => { console.log(error)
         this.setState({
           requestIncomplete: true
         })
-      });
+      })
   }
 
   //handles changes for the item being searched
   searchButtonClick = () => {
-    this.searchApi(16, this.state.tag)
+    this.searchApi(24, this.state.tag)
   }
 
   //when a search button is selected this triggers and communicates 
   pickAnimal = (event) => {
-      this.searchApi(16, event.target.innerHTML);
+      this.searchApi(24, event.target.innerHTML);
   }
   
   //manipulates state through the input field
