@@ -35,7 +35,9 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.searchApi();
+    //get the ending char of the current url
+    const url = window.location.pathname.substr(1);
+    console.log(url)
   }
 
   searchApi = (amountToSearch = 24, itemToSearch = "cats") => {
