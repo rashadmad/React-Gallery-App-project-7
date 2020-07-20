@@ -14,7 +14,7 @@ class Birds extends Component {
           <React.Fragment>
             <h1>Bird Images</h1>
             <div className="photo-container">
-              <Gallery />
+              <Gallery applicationState={this.props.applicationState} />
             </div>  
           </React.Fragment>
         );

@@ -5,10 +5,14 @@ import Gallery from "./Gallery";
 
 class Search extends Component {
   
+  componentDidMount(){
+      this.props.searchApi(24, this.props.applicationState.tag)
+  }
+
   render() {
     return (
       <React.Fragment>
-        <h1>{this.props.searchedTerm}</h1>
+        <h1>Search</h1>
         <div className="photo-container">
           <Gallery />
         </div>  

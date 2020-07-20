@@ -14,7 +14,7 @@ class Dogs extends Component {
       <React.Fragment>
         <h1>Dog Images</h1>
         <div className="photo-container">
-          <Gallery />
+          <Gallery applicationState={this.props.applicationState} />
         </div>  
       </React.Fragment>
     );

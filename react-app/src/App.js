@@ -6,7 +6,6 @@ import './App.css';
 // import components
 import Nav from './components/Nav';
 import apiKey from './config.js';
-import { Provider } from './components/Context'
 
 // routes
 import Search from './components/Search';
@@ -26,11 +25,13 @@ class App extends Component {
     super()
     this.state = {
       //communicates to state if a response has failed
-      requestIncomplete: true,
-      //raw json data
+      requestIncomplete: false,
+      //takes in the data from the request
       imageData: null,
       //the default item to pull from the api
-      tag: null
+      tag: '',
+      //need to chart when the request has started but has not concluded
+      loading: true
     }
   }
 
@@ -40,14 +41,21 @@ class App extends Component {
       .then(data => {
         this.setState({
           imageData: data.photos.photo,
-          requestIncomplete: false
         });
       })
       .catch(error => { console.log(error)
         this.setState({
-          requestIncomplete: true
+          requestFailed: true,
+          loading: false
         })
       })
+      .finally(data => { 
+        this.setState({
+          requestFailed: false,
+          loading: false
+        })
+        console.log("request complete:" + data)
+      });
   }
 
   //handles changes for the item being searched
@@ -59,7 +67,8 @@ class App extends Component {
   pickAnimal = () => {
     //get the ending char of the current url
     const url = window.location.pathname.substr(1);
-    if(url !== ""){
+    //check to see if a route has been chosen
+    if(url !== ''){
       this.searchApi(24,url);
     }
   }
@@ -74,19 +83,15 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-          <Provider value={{
-            applicationState: this.state
-          }}>
-            <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
-            <Switch>
-              <Route exact path="/" render={() => <Search searchedTerm={this.state.tag}/>} />
-              <Route path="/search" render={() => <Search />} />
-              <Route path="/Cats" render={() => <Cats pickAnimal={this.pickAnimal} />} />
-              <Route path="/Dogs" render={() => <Dogs pickAnimal={this.pickAnimal} />} />
-              <Route path="/Birds" render={() => <Birds pickAnimal={this.pickAnimal} />} />
-              <Route path="/" component={PageNotFound} />
-            </Switch>
-          </Provider>
+          <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
+          <Switch>
+            <Route exact path="/" render={() => <Search searchApi={this.searchApi} applicationState={this.state} searchedTerm={this.state.tag}/>} />
+            <Route path="/search" render={() => <Search searchApi={this.searchApi} applicationState={this.state} searchedTerm={this.state.tag}/>} />
+            <Route path="/Cats" render={() => <Cats applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/Dogs" render={() => <Dogs applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/Birds" render={() => <Birds applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/" component={PageNotFound} />
+          </Switch>
       </BrowserRouter>
     );
   }
