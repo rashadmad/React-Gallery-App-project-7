@@ -4,10 +4,6 @@ import React, { Component } from "react";
 import Gallery from "./Gallery";
 
 class Search extends Component {
-  
-  componentDidMount(){
-      this.props.searchApi(24, this.props.applicationState.tag)
-  }
 
   render() {
     return (

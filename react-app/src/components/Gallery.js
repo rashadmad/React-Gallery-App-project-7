@@ -5,8 +5,13 @@ import Photo from "./Photo";
 
 class Gallery extends Component {
 
+  componentDidMount(){
+    this.searchApi(24,this.props.applicationState.tag);
+  }
+
   render() {
-    if(this.props.applicationState.imageData === null) return (<p>asdfasdfasdf</p>)
+    if(this.props.applicationState.loading) return <h3 className= "wrapper">Loading</h3>
+    else
     return ( 
           <ul>
             {

@@ -65,7 +65,9 @@ class App extends Component {
 
   //when a search button is selected this triggers and communicates 
   pickAnimal = (animal) => {
-      this.searchApi(24,animal);
+    this.setState({
+      tag: animal
+    });
   }
   
   //manipulates state through the input field
@@ -80,8 +82,8 @@ class App extends Component {
       <BrowserRouter>
           <Nav value={this.state.value} handleValueChange={this.handleValueChange} searchButtonClick={this.searchButtonClick} pickAnimal={this.pickAnimal} />
           <Switch>
-            <Route exact path="/" render={() => <Search searchApi={this.searchApi} applicationState={this.state} searchedTerm={this.state.tag}/>} />
-            <Route path="/search" render={() => <Search searchApi={this.searchApi} applicationState={this.state} searchedTerm={this.state.tag}/>} />
+            <Route exact path="/" render={() => <Search searchApi={this.searchApi} applicationState={this.state} />} />
+            <Route path="/search" render={() => <Search searchApi={this.searchApi} applicationState={this.state} />} />
             <Route path="/Cats" render={() => <Cats applicationState={this.state} pickAnimal={this.pickAnimal} />} />
             <Route path="/Dogs" render={() => <Dogs applicationState={this.state} pickAnimal={this.pickAnimal} />} />
             <Route path="/Birds" render={() => <Birds applicationState={this.state} pickAnimal={this.pickAnimal} />} />
