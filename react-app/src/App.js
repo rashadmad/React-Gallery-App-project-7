@@ -64,13 +64,8 @@ class App extends Component {
   }
 
   //when a search button is selected this triggers and communicates 
-  pickAnimal = () => {
-    //get the ending char of the current url
-    const url = window.location.pathname.substr(1);
-    //check to see if a route has been chosen
-    if(url !== ''){
-      this.searchApi(24,url);
-    }
+  pickAnimal = (animal) => {
+      this.searchApi(24,animal);
   }
   
   //manipulates state through the input field

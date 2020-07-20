@@ -6,7 +6,7 @@ import Gallery from "./Gallery";
 class Cats extends Component {
 
   componentDidMount(){
-    this.props.pickAnimal()
+    this.props.pickAnimal("Cats")
   }
   
   render() {
