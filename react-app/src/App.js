@@ -25,6 +25,7 @@ class App extends Component {
     super()
     this.state = {
       //communicates to state if a response has failed
+      requestFailed: false,
       requestComplete: false,
       //takes in the data from the request
       imageData: [],
