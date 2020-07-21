@@ -31,7 +31,9 @@ class App extends Component {
       //the default item to pull from the api
       tag: '',
       //need to chart when the request has started but has not concluded
-      loading: false
+      loading: false,
+      //need to check if a search has already been made
+      searchComponentHasMounted: false
     }
   }
 
@@ -62,12 +64,15 @@ class App extends Component {
     this.setState({
       loading: true
     })
+    if(this.state.searchComponentHasMounted){
+      this.searchApi(24,this.state.tag)
+    }
   }
   
   //manipulates state through the input field
   handleValueChange = (event) => {
     this.setState({
-      value: event.target.value,
+      tag: event.target.value
     });
   };
 

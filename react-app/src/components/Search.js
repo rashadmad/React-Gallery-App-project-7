@@ -19,6 +19,11 @@ class Search extends Component {
 
   componentDidMount(){
     this.props.searchApi(24,this.props.applicationState.tag)
+    this.props.applicationState.searchComponentHasMounted = true
+  }
+
+  componentWillUnmount(){
+    this.props.applicationState.searchComponentHasMounted = false
   }
 
   render() {
