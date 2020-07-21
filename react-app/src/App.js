@@ -25,13 +25,13 @@ class App extends Component {
     super()
     this.state = {
       //communicates to state if a response has failed
-      requestIncomplete: false,
+      requestComplete: false,
       //takes in the data from the request
-      imageData: null,
+      imageData: [],
       //the default item to pull from the api
       tag: '',
       //need to chart when the request has started but has not concluded
-      loading: true
+      loading: false
     }
   }
 
@@ -45,13 +45,12 @@ class App extends Component {
       })
       .catch(error => { console.log(error)
         this.setState({
-          requestFailed: true,
           loading: false
         })
       })
       .finally(data => { 
         this.setState({
-          requestFailed: false,
+          requestComplete: true,
           loading: false
         })
         console.log("request complete:" + data)
@@ -60,20 +59,15 @@ class App extends Component {
 
   //handles changes for the item being searched
   searchButtonClick = () => {
-    this.searchApi(24, this.state.tag)
-  }
-
-  //when a search button is selected this triggers and communicates 
-  pickAnimal = (animal) => {
     this.setState({
-      tag: animal
-    });
+      loading: true
+    })
   }
   
   //manipulates state through the input field
   handleValueChange = (event) => {
     this.setState({
-      tag: event.target.value,
+      value: event.target.value,
     });
   };
 
@@ -84,9 +78,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={() => <Search searchApi={this.searchApi} applicationState={this.state} />} />
             <Route path="/search" render={() => <Search searchApi={this.searchApi} applicationState={this.state} />} />
-            <Route path="/Cats" render={() => <Cats searchApi={this.searchApi} applicationState={this.state} pickAnimal={this.pickAnimal} />} />
-            <Route path="/Dogs" render={() => <Dogs searchApi={this.searchApi} applicationState={this.state} pickAnimal={this.pickAnimal} />} />
-            <Route path="/Birds" render={() => <Birds searchApi={this.searchApi} applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/Cats" render={() => <Cats searchApi={this.searchApi} applicationState={this.state} />} />
+            <Route path="/Dogs" render={() => <Dogs searchApi={this.searchApi} applicationState={this.state} />} />
+            <Route path="/Birds" render={() => <Birds searchApi={this.searchApi} applicationState={this.state} />} />
             <Route path="/" component={PageNotFound} />
           </Switch>
       </BrowserRouter>
