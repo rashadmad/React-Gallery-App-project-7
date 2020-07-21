@@ -84,9 +84,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={() => <Search searchApi={this.searchApi} applicationState={this.state} />} />
             <Route path="/search" render={() => <Search searchApi={this.searchApi} applicationState={this.state} />} />
-            <Route path="/Cats" render={() => <Cats applicationState={this.state} pickAnimal={this.pickAnimal} />} />
-            <Route path="/Dogs" render={() => <Dogs applicationState={this.state} pickAnimal={this.pickAnimal} />} />
-            <Route path="/Birds" render={() => <Birds applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/Cats" render={() => <Cats searchApi={this.searchApi} applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/Dogs" render={() => <Dogs searchApi={this.searchApi} applicationState={this.state} pickAnimal={this.pickAnimal} />} />
+            <Route path="/Birds" render={() => <Birds searchApi={this.searchApi} applicationState={this.state} pickAnimal={this.pickAnimal} />} />
             <Route path="/" component={PageNotFound} />
           </Switch>
       </BrowserRouter>

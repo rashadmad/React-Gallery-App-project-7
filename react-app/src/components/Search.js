@@ -10,7 +10,7 @@ class Search extends Component {
       <React.Fragment>
         <h1>Search</h1>
         <div className="photo-container">
-          <Gallery applicationState={this.props.applicationState.requestIncomplete} />
+          <Gallery searchApi={this.searchApi} applicationState={this.props.applicationState.requestIncomplete} />
         </div>  
       </React.Fragment>
     );

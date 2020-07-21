@@ -14,7 +14,7 @@ class Cats extends Component {
       <React.Fragment>
         <h1>Cat Images</h1>
         <div className="photo-container">
-          <Gallery applicationState={this.props.applicationState} />
+          <Gallery searchApi={this.props.searchApi} applicationState={this.props.applicationState} />
         </div>  
       </React.Fragment>
     );
