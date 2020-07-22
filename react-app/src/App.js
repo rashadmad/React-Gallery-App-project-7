@@ -43,7 +43,8 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          imageData: data.photos.photo,
+          requestFailed: false,
+          imageData: data.photos.photo
         });
       })
       .catch(error => { console.log(error)
@@ -55,7 +56,6 @@ class App extends Component {
       .finally(data => { 
         this.setState({
           requestComplete: true,
-          requestFailed: false,
           loading: false
         })
         console.log("request complete:" + data)

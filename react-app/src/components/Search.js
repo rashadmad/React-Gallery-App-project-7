@@ -35,6 +35,8 @@ class Search extends Component {
         { 
           this.props.applicationState.loading ? (
             <h3 className="wrapper">Loading</h3>
+          ) : this.props.applicationState.requestFailed ? (
+            <h3 className="wrapper">No images match your query</h3>
           ) : this.props.applicationState.requestComplete ? (
             <Gallery searchApi={this.props.searchApi} applicationState={this.props.applicationState}/>
           ) : (
