@@ -48,12 +48,14 @@ class App extends Component {
       })
       .catch(error => { console.log(error)
         this.setState({
+          requestFailed: true,
           loading: false
         })
       })
       .finally(data => { 
         this.setState({
           requestComplete: true,
+          requestFailed: false,
           loading: false
         })
         console.log("request complete:" + data)
