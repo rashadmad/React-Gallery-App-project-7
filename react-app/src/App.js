@@ -64,9 +64,6 @@ class App extends Component {
 
   //handles changes for the item being searched
   searchButtonClick = () => {
-    this.setState({
-      loading: true
-    })
     if(this.state.searchComponentHasMounted){
       this.searchApi(24,this.state.tag)
     }
@@ -75,6 +72,7 @@ class App extends Component {
   //manipulates state through the input field
   handleValueChange = (event) => {
     this.setState({
+      loading: true,
       tag: event.target.value
     });
   };

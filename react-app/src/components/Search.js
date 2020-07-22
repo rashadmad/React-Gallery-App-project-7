@@ -32,7 +32,12 @@ class Search extends Component {
       <React.Fragment>
         <h1>Search</h1>
         <div className="photo-container">
+        {this.props.applicationState.requestComplete ? (
           <Gallery searchApi={this.props.searchApi} applicationState={this.props.applicationState}/>
+          ) : (
+            <h3 className="wrapper">Search flickr database</h3>
+          )
+        }
         </div>  
       </React.Fragment>
     );
