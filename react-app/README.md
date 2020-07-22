@@ -88,3 +88,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### extra credit
+
+* I included a loading indicator for the search page on every search.
+* I included a message to let people know that there search brought back no results.
+* I also included a 404 page for people who get lost on the app.
