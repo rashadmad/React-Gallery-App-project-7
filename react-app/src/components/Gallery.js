@@ -19,18 +19,14 @@ class Gallery extends Component {
   render() {
     return ( 
       <ul>
-          {this.props.applicationState.requestComplete ? (
+          {
             this.props.applicationState.imageData.map(image =>  
               <Photo 
                 Title= {image.title}
                 key= {image.id}
                 data= {image}
               />)
-          ) : this.props.applicationState.requestFailed ? ( 
-            requestFailed()   
-          ) : (
-            loading()
-          )}
+          }
       </ul>
     )
   }
