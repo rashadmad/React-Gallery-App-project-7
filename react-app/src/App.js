@@ -30,7 +30,7 @@ class App extends Component {
       //takes in the data from the request
       imageData: [],
       //the default item to pull from the api
-      tag: '',
+      tag: 'cat',
       //need to chart when the request has started but has not concluded
       loading: false,
       //need to check if a search has already been made
