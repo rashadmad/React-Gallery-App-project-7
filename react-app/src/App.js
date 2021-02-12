@@ -39,19 +39,21 @@ class App extends Component {
   }
 
   searchApi = (amountToSearch = 24, itemToSearch = "cats") => {
-    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1')
+    fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&per_page=' + amountToSearch + '&tags=' + itemToSearch + '&format=json&nojsoncallback=1&safe_search = 1')
       .then(response => response.json())
       .then(data => {
         this.setState({
           requestFailed: false,
           imageData: data.photos.photo
         });
+        console.log("request successful");
       })
       .catch(error => { console.log(error)
         this.setState({
           requestFailed: true,
           loading: false
         })
+        console.log("request failed " + apiKey);
       })
       .finally(data => { 
         this.setState({
